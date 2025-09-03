@@ -8,7 +8,7 @@ int main(void)
     int arr[50];
     
     printf("Enter the size of array\n"); 
-    scanf("%i",&n);
+    scanf("%i", &n);
 
     printf("Enter the element of array\n");
 
