@@ -21,7 +21,7 @@ int main(void)
     scanf("%i",&begin);
 
     //shifting elemnts to the right
-    for(int i = n+1; i >= 0; i-- )
+    for(int i = n-1; i >= 0; i-- )
     {
         arr[i+1] = arr[i];
     } 
