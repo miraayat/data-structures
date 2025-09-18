@@ -1,13 +1,13 @@
 #include <stdio.h>
 
-// Display a string using 
+// Display a string using pointers
 int main(void)
 {
     char str[50]; char *p;
     printf("Enter a string: ");
     scanf("%s",&str);
 
-    p = &str[0]; // by default points to first charater of an array
+    p = &str[0]; 
     
     while(*p != '\0')
     {
