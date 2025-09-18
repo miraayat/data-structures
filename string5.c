@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-// Display a string using 
+// Display a string using pointers
 int main(void)
 {
     char str[50]; char *p;
