@@ -12,6 +12,7 @@ node *linkedlist(node *header, int size);//Creating a doubly linked list
 void fwd_traversal(node *header);//display the data 
 void bwd_traversal(node *header);//display the data in reverse order
 void freelist(node *header);//free list
+void insertion(node **header);
 /*todo: insertion operations*/
 
 int main(void)
@@ -24,6 +25,10 @@ int main(void)
     
     fwd_traversal(header);
 
+    bwd_traversal(header);
+
+    insertion(&header);
+    fwd_traversal(header);
     bwd_traversal(header);
 
     freelist(header);
@@ -41,7 +46,7 @@ node *linkedlist(node *header, int size)
             printf("Unable to allocate memory");
             break;
         }
-        printf("Enter the data in %ith node: ", i+1);
+        printf("Enter the data in node %i: ", i+1);
         scanf("%i",&newnode->data);
         newnode->next = NULL;
         newnode->prev = NULL;
@@ -98,8 +103,7 @@ void bwd_traversal(node *header)
     {
         printf("%i ",temp->data);
         temp = temp->prev;
-    }
-    printf("%i\n", temp->data);
+    } printf("\n");
 }
 
 void freelist(node *header)
@@ -110,5 +114,55 @@ void freelist(node *header)
         ptr = header;
         header = header->next;
         free(ptr);
+    }
+}
+
+void insertion(node **header)
+{
+    int pos; 
+
+    node *newnode = malloc(sizeof(node));
+    if(newnode == NULL)
+    { 
+        printf("Unable to allocate memory");
+        return;
+    }
+    else
+    {
+        printf("Enter the position of the newnode: ");
+        scanf("%i", &pos);
+        printf("Enter data into the new node: " );
+        scanf("%i",&newnode->data);
+        newnode->next = NULL;
+        newnode->prev = NULL;
+    }
+
+    node *ptr = *header;
+
+    if (pos == 1) /*insertion at beginning*/
+    {
+        *header = newnode;
+        newnode->next = ptr;
+        ptr->prev = newnode;
+    }
+    else // insertion at any position or at last
+    {
+        for(int i = 1; i < pos-1 && ptr != NULL; i++)
+        {
+            ptr = ptr->next;
+        }
+        
+        if (ptr == NULL)
+        {
+            printf("Position out of bounds\n");
+            free(newnode);
+            return;
+        }
+        
+        newnode->next = ptr->next;//if at end ptr->next points to null
+        if(ptr->next != NULL)
+        ptr->next->prev = newnode;
+        ptr->next = newnode;
+        newnode->prev  = ptr;
     }
 }
