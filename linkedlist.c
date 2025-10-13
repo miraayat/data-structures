@@ -1,15 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//creation and traversal of a linked list
 typedef struct node
 {
     int data;
     struct node *next;
 }node;
+
+void copy(node *header);//Display a linked list in reverese order
+
 int main(void)
 {
-    node *header = NULL;
+    node *header = NULL;  //creation and traversal of a linked list
 
     for(int i = 0; i < 3; i++)
     {
@@ -34,10 +36,30 @@ int main(void)
             }
         }
     }
+    printf("Data: ");
     for(node *tmp = header; tmp != NULL; tmp = tmp->next)
     {
         printf("%i ",tmp->data);
-    }
+    }printf("\n");
+
+    printf("List in reverse order: ");
+    copy(header);
     
     return 0;
+}
+void copy(node *header)
+{
+    int arr[3],i = 0;
+    node *ptr = header;
+    while(ptr != NULL)
+    {
+        arr[i] = ptr->data;
+        ptr = ptr->next;
+        i++;
+    }
+
+    for(i = 3; i >0; i--)
+    {
+        printf("%i ", arr[i-1]);
+    }
 }
