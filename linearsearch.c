@@ -18,7 +18,7 @@ int main(void)
     {
         if(arr[i] == ele)
         {
-            printf("Found at %i!!", i+1);
+            printf("Found at %i!", i+1);
             flag = 1;
             return 1;
         }
