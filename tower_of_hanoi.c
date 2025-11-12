@@ -1,28 +1,23 @@
-#include <stdio.h>
-
-void towerOfHanoi(int n, char src, char aux, char des)
+#include<stdio.h>
+#include<math.h>
+void toh(int n,char source,char destination,char auxiliary)
 {
-    if (n == 1)
+    if(n==1)            
     {
-        printf("Disk moved form %c to %c \n", src, des);
+        printf("Move disk 1 from rod %c to rod %c\n",source,destination);
         return;
     }
-
-    towerOfHanoi(n - 1, src, aux, des);
-    printf("Disk moved form %c to %c \n", src, aux);
-    towerOfHanoi(n - 1, aux, des, src);
+    toh(n-1,source,auxiliary,destination);
+    printf("Move disk %d from rod %c to rod %c\n",n,source,destination);
+    toh(n-1,auxiliary,destination,source);
 }
-
 int main()
 {
-
-    int disk = 1;
-    char src = 'A';
-    char aux = 'B';
-    char des = 'C';
-
-    printf("Enter number of disks: ");
-    scanf("%d", &disk);
-
-    towerOfHanoi(disk, src, aux, des);
+    int n;
+    printf("Enter the number of disks: ");
+    scanf("%d",&n);
+    printf("The sequence of moves involved in the Tower of Hanoi are :\n");
+    toh(n,'A','C','B');
+    printf("Total number of moves: %d\n", (int)(pow(2,n)-1));
+    return 0;
 }
