@@ -10,6 +10,7 @@ typedef struct node
 node *linkedlist (node * header, int n);//create linkedlist
 void traversal(node *header);//traversal
 void freelist(node *header);//free linkedlist
+
 int main(void)
 {
     node *header = NULL;int n;
